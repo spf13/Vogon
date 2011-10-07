@@ -1,0 +1,48 @@
+{% import "urls.twig" as urls %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block page_title %} {% endblock %}</title>
+        <base href="{{ urls.base }}"></base>
+
+        <!-- CSS -->
+        <link href="style/css/transdmin.css" rel="stylesheet" type="text/css" media="screen" />
+
+        <!-- JavaScripts-->
+        <script type="text/javascript" src="style/js/jquery.js"></script>
+        <script type="text/javascript" src="style/js/jNice.js"></script>
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <!-- h1 tag stays for the logo, you can use the a tag for linking the index page -->
+            <h1 class="logo"><a href="#"><span>{% block page_headline %} {% endblock %}</span></a></h1>
+
+
+            {% include 'menu.html' %}
+            <div id="containerHolder">
+                <div id="container">
+                        {% include 'sidemenu.html' %}
+
+                    <!-- h2 stays for breadcrumbs -->
+                    <h2><a href="#">Dashboard</a> &raquo; <a href="#" class="active">Print resources</a></h2>
+
+                    <div id="main">
+
+                        {% block content %} {% endblock %}
+
+                    </div>
+                    <!-- // #main -->
+
+                    <div class="clear"></div>
+                </div>
+                <!-- // #container -->
+            </div>	
+            <!-- // #containerHolder -->
+
+            <p id="footer">Feel free to use and customize it. <a href="http://www.perspectived.com">Credit is appreciated.</a></p>
+        </div>
+        <!-- // #wrapper -->
+    </body>
+</html>

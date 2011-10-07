@@ -1,0 +1,16 @@
+{% macro input(name, value, type, size, html) %}
+    <input type="{{ type|default('text') }}" {{ html|e }} name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" />
+{% endmacro %}
+
+{% macro textarea(name, value, rows, html) %}
+    <textarea name="{{ name }}" {{ html|e }} rows="{{ rows|default(10) }}" cols="{{ cols|default(40) }}">{{ value|e }}</textarea>
+{% endmacro %}
+
+{% macro select(name,options,current,html) %}
+    <select name="{{ name }}" {{ html|e }}>
+    {% for options in value %}
+        {% set selected = current == value ? 'selected' : '' %} 
+        <option value="{{value}}" name="{{key}}" {{selected}}>{{key}}</option>
+    {% endfor %}
+    </select>
+{% endmacro %}

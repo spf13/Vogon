@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block page_title %}{{ action_name }} Article{% endblock %}
+{% block page_headline %}{{ action_name }} Article{% endblock %}
+
+{% block content %}
+{% import "forms.twig" as forms %}
+{% import "urls.twig" as urls %}
+
+<div id="main">
+    <div class="myform">
+        <form action="{{ urls.url('author') }}/create" class="jNice" method="post">
+            <h1>{{ action_name }} Author</h1>
+            <p>This is the basic look of my form without table</p>
+            <!--  <h3>{{ action_name }} Author</h3> -->
+            <fieldset>
+
+                <label for="author">Author
+                    <span class="small">Username is the primary key</span>
+                </label>
+                {% if author._id %}
+                {{author._id}}
+                {% else %}
+                    {{ forms.input('username' , author._id)}}
+                {% endif %}
+                </p>
+
+                <p>
+                <label for="display_name">Display Name
+                    <span class="small">Will be shown on blog</span>
+                </label>
+                {{ forms.input('display_name', author.display_name)}}
+                </p>
+
+                <input type="submit" value="{{ action_name }}" />
+            </fieldset>
+        </form>
+    </div>
+</div> <!-- // #main -->
+
+{% endblock %}

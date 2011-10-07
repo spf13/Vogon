@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block page_title %}Authors{% endblock %}
+
+{% block content %}	
+    <h1>Authors</h1>
+
+    <p><a href="{{ urls.url('author') }}/create">Add Author</a></p>
+
+    {% if authors %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Display name</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for author in authors %}
+                <tr>
+                    <td>{{ author._id }}</td>
+                    <td>{{ author.display_name }}</td>
+                    <td><a href="{{ urls.url('author') }}/{{ author._id }}/edit">Edit</a></td>
+                    <td><a href="{{ urls.url('author') }}/{{ author._id }}/delete">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>There are currently no authors.</p>
+    {% endif %}
+{% endblock %}

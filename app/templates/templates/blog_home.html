@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block page_title %}My Blog{% endblock %}
+
+{% block content %}	
+	{% for article in articles %}
+		<h1><a href="/view/{{ article.id }}">{{ article.title }}</a> by {{ article.author }}</h1>
+		<p>{{ article.summary }}</p>
+	{% else %}	
+		<p>There are currently no articles.</p>
+	{% endfor %}
+{% endblock %}

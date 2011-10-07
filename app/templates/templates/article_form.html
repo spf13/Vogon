@@ -1,0 +1,46 @@
+{% import "forms.twig" as forms %}
+
+<div id="main">
+    <form action="" class="jNice" method="post">
+        <h3>{{ action_name }} Article</h3>
+        <fieldset>
+            <p>
+            <label for="title">Title: </label><br />
+            <input type="text" name="title" value="{{ article.title|default('') }}" id="title" class="text-long"/>
+            </p>
+
+            <p>
+            <label for="author">Author: </label><br />
+            {{ forms.select('author', authors, article.author) }}
+            <!-- ><input type="text" name="author" value="{{ article.author|default('') }}" id="author" /> -->
+            </p>
+
+            <p>
+            <label for="summary">Summary: </label><br />
+            <textarea name="summary" id="summary" rows="10" cols="20">{{ article.summary|default('') }}</textarea>
+            </p>	
+
+            <p>
+            <label for="content">Content: </label><br />
+            <textarea name="content" id="content" rows="10" cols="20">{{ article.content|default('') }}</textarea>
+            </p>
+
+            <p><label>Sample label:</label><input type="text" class="text-long" /></p>
+            <p><label>Sample label:</label><input type="text" class="text-medium" /><input type="text" class="text-small" /><input type="text" class="text-small" /></p>
+            <p><label>Sample label:</label>
+            <select>
+                <option>Select one</option>
+                <option>Select two</option>
+                <option>Select tree</option>
+                <option>Select one</option>
+                <option>Select two</option>
+                <option>Select tree</option>
+            </select>
+            </p>
+            <p><label>Sample label:</label><textarea rows="1" cols="1"></textarea></p>
+            <input type="submit" value="{{ action_name }} Article" />
+            <input type="submit" value="Submit Query" />
+        </fieldset>
+    </form>
+</div>
+<!-- // #main -->

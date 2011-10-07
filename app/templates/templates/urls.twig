@@ -1,0 +1,1 @@
+{% macro url(key) %}{% set base = 'http://localhost/iblog/' %}{% if key == 'base' %}{{ base }}{% elseif key == 'author' %}{{ base }}admin/author{% elseif key == 'article' %}{{ base }}admin/article{% endif %}{% endmacro %}

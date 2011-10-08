@@ -28,7 +28,7 @@ h1.logo {
 	margin: 15px 0 10px 5px;
 	width: 225px;
 	height: 28px;
-	background: url(../img/vogon.png) no-repeat left top;
+	background: url(../img/vogon_admin.png) no-repeat left top;
 }
 
 h1 a {
@@ -126,7 +126,7 @@ h1 span { display: none; }
 /* Breadcrumb ---------------------------------------- */
 
 h2 {
-	width: 718px;
+	width: 766px;
 	float: right;
 	color: #646464;
 	font-size: 16px;
@@ -151,7 +151,7 @@ h2 a:hover { text-decoration: underline; }
 #main {
 	width: 750px;
 	float: right;
-	padding: 0 19px 0 0;
+	padding: 0 38px 0 0;
 }
 
 h3 {
@@ -165,7 +165,12 @@ h3 {
 
 #main table {
 	border-top: 1px solid #ddd;
+	width: 788px;
+}
+
+#main table.cke_editor {
 	width: 700px;
+
 }
 
 #main table tr td {
@@ -290,6 +295,7 @@ h3 {
     border:solid 2px #b7ddf2;
     background:#ebf4fb;
     margin-bottom: 20px;
+    margin-left: 15px;
 }
 .stylized h1 {
     font-size:24px;

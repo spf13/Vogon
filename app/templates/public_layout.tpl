@@ -5,67 +5,48 @@
         <title>Vogon :: {block name=page_title}{$action_name} {$label}{/block} </title>
         <link href="{slimurl name="public.css"}" rel="stylesheet" type="text/css" media="screen" />
         <script type="text/javascript" src="{slimurl name="jquery.js"}"></script>
-        <style>
-            body{
-                font-family: sans-serif;
+        <script>
+            window.onscroll = function()
+            {
+                if (window.XMLHttpRequest)
+                {
+                    d = 289;
+                    sticky = document.getElementById('sticky');
+                    s_top = document.documentElement.scrollTop;
+                    x = self.pageYOffset;
+                    if (s_top > d || x > d) {
+                        sticky.style.position = 'fixed';
+                        sticky.style.top = '0px';
+                        sticky.style.paddingLeft = '0px';
+                        sticky.className = 'shadowed';
+                    } else {
+                        sticky.style.position = 'absolute';
+                        sticky.style.top = d + 1 + 'px';
+                        sticky.className = '';
+                    }
+                }
             }
-
-            #header{
-                position:absolute;
-                top:0px;
-                left:0px;
-                width:100%;
-                -webkit-box-shadow: 5px 2px 5px -3px #bbbbbb;
-                -moz-box-shadow: 5px 2px 5px -3px #bbbbbb;
-                box-shadow: 5px 2px 5px -3px #bbbbbb;
-                border-bottom:1px solid black;
-                background-color:#eee;
-                text-align:center;
-                height:150px;
-            }
-            #followmeon{
-                font-size:16px;
-            }
-            #container{
-            margin-top:150px;
-                margin-left:auto;
-                margin-right:auto;
-                width:600px;
-            }
-            ul.tags{
-                padding-left:0px;
-            }
-            ul.tags > a{
-            }
-            li.post{
-                list-style:none;
-            }
-            li.tag{
-                display:inline;
-                list-style:none;
-            }
-            li.tag > a{
-                text-decoration:none;
-            }
-            li.post{
-                margin-top:30px;
-                padding-bottom:30px;
-                margin-bottom:30px;
-                border-bottom:1px solid #ddd;
-            }
-        </style>
+        </script>
     </head>
 
     <body>
-        <div id="header">
-          <div id="top_img"><a href="{slimurl name="home"}" title="Home"><img height="96" src="{slimurl name="logo"}""></a></div>
+        <header>
+          <a class="logo" href="{slimurl name="home"}" title="Home"><img src="{slimurl name="img"}/vogon.png"></a>
           <h1 id="blog_title"></h1>
-          <div id="followmeon">Follow me on <span class="pictos twitter"><a href="http://twitter.com/spf13" title="@spf13 on Twitter"><b>Twitter</b></a></span> / Check out my <span class="pictos projects"><a href="/projects" title="Projects"><b>Projects</b></a></span></div>
-        </div>
-        <div id="#nav">
-          <h2><a href="/about" title="About Me">About me</a> / <a href="/tagged/best" title="My favorite entries">Read my favorite posts</a> / <a href="/archive" title="Archive">View the archive</a>  </h2>
-          <div style="clear:both"><div>
-        </div>
+          <h2>Vogon, a simple blogging platform made with <a href="http://php.net/" title="PHP">PHP</a>, <a href="http://mongodb.org" title="mongodb">MongoDB</a> and <a href="http://www.slimframework.com/" title="slim framework">SlimFramework</a></h2>
+        </header>
+        <nav id="sticky" style="padding-left: 0px; position: absolute; top: 290px;">
+          <h2>
+              <span>Follow me on <a href="http://twitter.com/spf13" title="@spf13 on Twitter"><b>Twitter</b></a> </span>
+              <span>View my photos on <a href="http://flickr.com/photos/spf13" title="spf13 on Flickr"><b>Flickr</b></a> </span>
+              <span>Fork me on <a href="http://github.com/spf13/vogon" title="Vogon on Github"><b>GitHub</b></a>  </span>
+          </h2>
+          <h2>
+              <span><a href="#" title="About">About me</a></span>
+              <span><a href="{slimurl name="tag"}/fav" title="My favorite entries">Read my favorite posts</a></span>
+              <span><a href="#" title="Archive">View the archive</a></span>
+          </h2>
+        </nav>
 
         <div id="container">
           {block name=main}
@@ -75,7 +56,6 @@
             {foreachelse}
                 No Posts found.
             {/foreach}
-
           </ul>
           {*<div id="pagers">*}
             {*<p>Page 1 of 2</p>*}

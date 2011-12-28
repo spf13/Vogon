@@ -7,14 +7,17 @@ class articles_route {
 
     public function page_init() {
           auth::check();
-          $s = Slim::getInstance();
-          $s->view()->setData('section', 'articles');
-          $s->view()->setData('label', 'article');
-          $s->view()->setData('prefix', $this->prefix);
     }
 
     public function post_init() {
           auth::check();
+    }
+
+    public static function set_view_data() {
+        $s = Slim::getInstance();
+        $s->view()->setData('section', 'Articles');
+        $s->view()->setData('label', 'Article');
+        $s->view()->setData('prefix', 'article');
     }
 
     function __construct() {
@@ -22,10 +25,12 @@ class articles_route {
         $prefix = $this->prefix;
 
         $s->get($this->base, $this->page_init(), function () use ($s) {
+            articles_route::set_view_data();
             return $s->render('articles/list.tpl', array('action_name' => 'List', 'articles' => $s->db->articles->find()));
         })->name($prefix);
 
         $s->get($this->base . 'create', $this->page_init(), function () use ($s) {
+            articles_route::set_view_data();
             foreach($s->db->users->find() as $author) {
                 $authors[$author['_id']] = $author['display_name'];
             }
@@ -55,6 +60,7 @@ class articles_route {
         })->name($prefix . '_create_post');
 
         $s->get($this->base . '(:_id)/edit', $this->page_init(), function ($_id) use ($s,$prefix) {
+            articles_route::set_view_data();
             foreach($s->db->users->find() as $author) {
                 $authors[$author['_id']] = $author['display_name'];
             }
@@ -74,6 +80,7 @@ class articles_route {
         })->name($prefix . '_delete');
 
         $s->get($this->base . '(:_id)', $this->page_init(), function ($_id) {
+            articles_route::set_view_data();
             echo "Hello, $_id!";
         })->name($prefix . '_view');
     }

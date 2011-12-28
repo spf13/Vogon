@@ -14,6 +14,7 @@ class tag_route {
         $s->get($this->base . "(:tag)", $this->page_init(), function ($tag) use ($s) {
             return $s->render('posts/tag.tpl', array(
                 'tag' => $tag,
+                'label' => 'Posts by Tag',
                 'action_name' => 'List',
                 'posts' => $s->db->articles->find(array('tags' => $tag))));
         })->name($prefix);

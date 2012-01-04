@@ -15,7 +15,7 @@
                 {foreach from=$articles item=article}
                 <tr>
                     <td>{$article.title}</td>
-                    <td>{$article.created_at|date_format}</td>
+                    <td>{$article.created_at->sec|date_format}</td>
                     <td><a href="{slimurl name='article_edit' values=$article}">Edit</a></td>
                     <td><a href="{slimurl name="article_delete" values=$article}">Delete</a></td>
                 </tr>

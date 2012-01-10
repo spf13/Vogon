@@ -104,7 +104,7 @@ li.tag {
     padding:1em;
 }
 
-a.date {
+.date {
     top: -1.3em;
     margin-left: 2px;
     position: relative;

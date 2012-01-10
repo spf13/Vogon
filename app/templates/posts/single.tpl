@@ -1,6 +1,6 @@
     <li class="post">
         <h3 class="post_title">{$post.title}</h3>
-        <a class="date" href="{slimurl name=post key=slug val=$post.slug}" title="Permanent link">{$post.created_at|date_format}</a>
+        <span class="date"><a href="{slimurl name=post key=slug val=$post.slug}" title="Permanent link">{$post.created_at->sec|date_format}</a> by {$authors.{$post.author}}</span>
         <div class="post_body">
             {$post.content}
         </div>

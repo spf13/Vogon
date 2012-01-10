@@ -20,7 +20,7 @@
             {inputbox name=slug value=$article.slug hint="url key for this article"}
             {inputbox name=tags value=$article.tags|implode hint="comma separated list"}
             {inputbox name=categories value=$article.categories|implode hint="comma separated list"}
-            {inputbox name=created_at value=$article.created_at|date_format:"%B %e, %Y %H:%M:%S" hint="leave blank for now()"}
+            {inputbox name=created_at value=$article.created_at->sec|date_format:"%B %e, %Y %H:%M:%S" hint="leave blank for now()"}
 
             <label for="author">Author
                 <span class="small">Author of the post</span>

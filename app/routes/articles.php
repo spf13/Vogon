@@ -53,7 +53,12 @@ class articles_route {
             $article->author = $s->request()->post('author');
             $article->tags = $trim_array(explode(",", $s->request()->post('tags')));
             $article->categories = $trim_array(explode(",", $s->request()->post('categories')));
-            $article->created_at = new MongoDate(strtotime($s->request()->post('created_at')));
+            $created_at = $s->request()->post('created_at');
+            if(empty($created_at)) {
+                $article->created_at = new MongoDate();
+            } else {
+                $article->created_at = new MongoDate(strtotime($created_at));
+            }
 
             $s->db->articles->save($article);
             $s->redirect($s->urlFor($prefix));

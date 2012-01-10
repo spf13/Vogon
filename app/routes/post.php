@@ -11,13 +11,12 @@ class post_route {
         $s = Slim::getInstance();
         $prefix = $this->prefix;
 
-        $author_list = $s->db->users->find();
-        $authors = array();
-        foreach ($author_list as $a) {
-            $authors[$a['_id']] = $a['display_name'];
-        }
-
-        $s->get($this->base . "(:slug)", $this->page_init(), function ($slug) use ($s, $authors) {
+        $s->get($this->base . "(:slug)", $this->page_init(), function ($slug) use ($s) {
+            $author_list = $s->db->users->find();
+            $authors = array();
+            foreach ($author_list as $a) {
+                $authors[$a['_id']] = $a['display_name'];
+            }
             return $s->render('posts/view.tpl', array(
                 'action_name' => 'List',
                 'label' => 'Post',
@@ -26,7 +25,12 @@ class post_route {
             ));
         })->name($prefix);
 
-        $s->get("/", $this->page_init(), function () use ($s, $authors) {
+        $s->get("/", $this->page_init(), function () use ($s) {
+            $author_list = $s->db->users->find();
+            $authors = array();
+            foreach ($author_list as $a) {
+                $authors[$a['_id']] = $a['display_name'];
+            }
             return $s->render('posts/home.tpl', array(
                 'action_name' => 'List',
                 'label' => 'Posts',

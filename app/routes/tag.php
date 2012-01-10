@@ -11,13 +11,13 @@ class tag_route {
         $s = Slim::getInstance();
         $prefix = $this->prefix;
 
-        $author_list = $s->db->users->find();
-        $authors = array();
-        foreach ($author_list as $a) {
-            $authors[$a['_id']] = $a['display_name'];
-        }
+        $s->get($this->base . "(:tag)", $this->page_init(), function ($tag) use ($s) {
+            $author_list = $s->db->users->find();
+            $authors = array();
+            foreach ($author_list as $a) {
+                $authors[$a['_id']] = $a['display_name'];
+            }
 
-        $s->get($this->base . "(:tag)", $this->page_init(), function ($tag) use ($s, $authors) {
             return $s->render('posts/tag.tpl', array(
                 'tag' => $tag,
                 'label' => 'Posts by Tag',

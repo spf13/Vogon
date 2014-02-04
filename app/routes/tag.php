@@ -12,11 +12,8 @@ class tag_route {
         $prefix = $this->prefix;
 
         $s->get($this->base . "(:tag)", $this->page_init(), function ($tag) use ($s) {
-            $author_list = $s->db->users->find();
-            $authors = array();
-            foreach ($author_list as $a) {
-                $authors[$a['_id']] = $a['display_name'];
-            }
+            $author_list = $s->db->users->find(array(), array('display_name' => true));
+            $authors = iterator_to_array($author_list);
 
             return $s->render('posts/tag.tpl', array(
                 'tag' => $tag,

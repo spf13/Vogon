@@ -12,11 +12,8 @@ class post_route {
         $prefix = $this->prefix;
 
         $s->get($this->base . "(:slug)", $this->page_init(), function ($slug) use ($s) {
-            $author_list = $s->db->users->find();
-            $authors = array();
-            foreach ($author_list as $a) {
-                $authors[$a['_id']] = $a['display_name'];
-            }
+            $author_list = $s->db->users->find(array(), array('display_name' => true));
+            $authors = iterator_to_array($author_list);
             return $s->render('posts/view.tpl', array(
                 'action_name' => 'List',
                 'label' => 'Post',
@@ -26,11 +23,8 @@ class post_route {
         })->name($prefix);
 
         $s->get("/", $this->page_init(), function () use ($s) {
-            $author_list = $s->db->users->find();
-            $authors = array();
-            foreach ($author_list as $a) {
-                $authors[$a['_id']] = $a['display_name'];
-            }
+            $author_list = $s->db->users->find(array(), array('display_name' => true));
+            $authors = iterator_to_array($author_list);
             return $s->render('posts/home.tpl', array(
                 'action_name' => 'List',
                 'label' => 'Posts',
